@@ -1,0 +1,78 @@
+{
+ "id": "s19",
+ "duration": 6.11,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.15
+  },
+  {
+   "id": "b1",
+   "t0": 1.2,
+   "t1": 2.935
+  },
+  {
+   "id": "b2",
+   "t0": 2.985,
+   "t1": 4.296
+  },
+  {
+   "id": "b3",
+   "t0": 4.346,
+   "t1": 6.107
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs19-track",
+   "beat": "b0",
+   "role": "track",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs19-bar",
+   "beat": "b1",
+   "role": "fill",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs19-badge",
+   "beat": "b2",
+   "role": "badge",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs19-lead",
+   "beat": "b2",
+   "role": "leader",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs19-pct",
+   "beat": "b2",
+   "role": "label",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs19-m1",
+   "beat": "b3",
+   "role": "metric",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs19-m2",
+   "beat": "b3",
+   "role": "metric",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs19-exec",
+   "beat": "b3",
+   "role": "note",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "coverage track with 25/50/75 marks, the fill grows to 55 of 331 edges, then the stability and saved_crashes badges"
+}

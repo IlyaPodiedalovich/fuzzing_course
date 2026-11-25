@@ -1,0 +1,103 @@
+{
+ "id": "s25",
+ "duration": 5.59,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.15
+  },
+  {
+   "id": "b1",
+   "t0": 1.2,
+   "t1": 3.19
+  },
+  {
+   "id": "b2",
+   "t0": 3.24,
+   "t1": 5.595
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs25-ax",
+   "beat": "b0",
+   "role": "axis",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs25-l0",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs25-l1",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs25-l2",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs25-l3",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs25-b1",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs25-b2",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs25-v1",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs25-v2",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs25-b3",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs25-b4",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs25-v3",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs25-v4",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "coverage.py line coverage for watcher; two bars per beat"
+}

@@ -1,0 +1,84 @@
+{
+ "id": "s16",
+ "duration": 6.94,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 3.94
+  },
+  {
+   "id": "b2",
+   "t0": 3.99,
+   "t1": 5.13
+  },
+  {
+   "id": "b3",
+   "t0": 5.18,
+   "t1": 6.941
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs16-b1",
+   "beat": "b1",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs16-deps",
+   "beat": "b1",
+   "role": "dropped",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs16-strike",
+   "beat": "b2",
+   "role": "mark",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs16-a1",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs16-b2",
+   "beat": "b2",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs16-a2",
+   "beat": "b3",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs16-b3",
+   "beat": "b3",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs16-e1",
+   "beat": "b3",
+   "role": "error badge",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs16-e2",
+   "beat": "b3",
+   "role": "error badge",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "cronie box, four dropped dependencies crossed out, filter box, target and two error badges with their fixes"
+}

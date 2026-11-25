@@ -1,0 +1,73 @@
+{
+ "id": "s28",
+ "duration": 4.32,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.512
+  },
+  {
+   "id": "b2",
+   "t0": 2.562,
+   "t1": 4.322
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs28-c1",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs28-c2",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs28-c3",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs28-c4",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs28-v1",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs28-v2",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs28-v3",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs28-v4",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "four stat cards for the watcher demo; values in the second beat"
+}

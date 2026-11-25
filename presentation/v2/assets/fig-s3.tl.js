@@ -1,0 +1,21 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 5.75;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs3-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs3-edges", { autoAlpha: 0.16 }, { autoAlpha: 0.55, duration: 0.45, ease: "none" }, 0.05);
+  tl.fromTo("#fs3-nodes", { autoAlpha: 0.16 }, { autoAlpha: 0.7, duration: 0.45, ease: "none" }, 0.05);
+  tl.fromTo("#fs3-p1", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.935, ease: "none" }, 1.143);
+  tl.fromTo("#fs3-lp1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.228);
+  tl.fromTo("#fs3-p2", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.935, ease: "none" }, 3.267);
+  tl.fromTo("#fs3-lp2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 3.352);
+  tl.fromTo("#fs3-badge", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.522);
+  tl.fromTo("#fs3-lnote", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.607);
+  tl.fromTo("#fs3-edges", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.65);
+  tl.fromTo("#fs3-nodes", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.65);
+  tl.set("#fs3-p1h", { autoAlpha: 0 }, 0);
+  tl.to("#fs3-p1h", { autoAlpha: 1, duration: 0.12 }, 1.8162);
+  tl.set("#fs3-p2h", { autoAlpha: 0 }, 0);
+  tl.to("#fs3-p2h", { autoAlpha: 1, duration: 0.12 }, 3.9402);
+  return tl;
+};

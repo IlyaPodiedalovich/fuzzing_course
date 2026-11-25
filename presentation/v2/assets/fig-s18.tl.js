@@ -1,0 +1,23 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 6.34;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs18-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs18-p0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.1);
+  tl.fromTo("#fs18-p1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.202);
+  tl.fromTo("#fs18-p2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.304);
+  tl.fromTo("#fs18-p3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.406);
+  tl.fromTo("#fs18-p4", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.508);
+  tl.fromTo("#fs18-p5", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.61);
+  tl.fromTo("#fs18-a0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 2.884);
+  tl.fromTo("#fs18-a1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 2.969);
+  tl.fromTo("#fs18-a2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.054);
+  tl.fromTo("#fs18-a3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.139);
+  tl.fromTo("#fs18-a4", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.224);
+  tl.fromTo("#fs18-a5", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.309);
+  tl.fromTo("#fs18-k0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 4.584);
+  tl.fromTo("#fs18-k1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 4.669);
+  tl.fromTo("#fs18-k2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 4.754);
+  tl.fromTo("#fs18-k3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 4.839);
+  return tl;
+};

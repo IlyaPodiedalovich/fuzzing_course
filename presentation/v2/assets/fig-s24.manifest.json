@@ -1,0 +1,85 @@
+{
+ "id": "s24",
+ "duration": 5.42,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.15
+  },
+  {
+   "id": "b1",
+   "t0": 1.2,
+   "t1": 3.02
+  },
+  {
+   "id": "b2",
+   "t0": 3.07,
+   "t1": 5.425
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs24-ax",
+   "beat": "b0",
+   "role": "axis",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs24-l0",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs24-l1",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs24-l2",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs24-b1",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs24-v1",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs24-b2",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs24-b3",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs24-v2",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs24-v3",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "wrapper, env.c and TOTAL line coverage; the wrapper bar grows first"
+}

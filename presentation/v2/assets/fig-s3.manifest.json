@@ -1,0 +1,73 @@
+{
+ "id": "s3",
+ "duration": 5.75,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 3.175
+  },
+  {
+   "id": "b2",
+   "t0": 3.225,
+   "t1": 5.75
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs3-edges",
+   "beat": "b0",
+   "role": "cfg edges",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs3-nodes",
+   "beat": "b0",
+   "role": "cfg nodes",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs3-p1",
+   "beat": "b1",
+   "role": "path",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs3-lp1",
+   "beat": "b1",
+   "role": "label",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs3-p2",
+   "beat": "b2",
+   "role": "path",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs3-lp2",
+   "beat": "b2",
+   "role": "label",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs3-badge",
+   "beat": "b2",
+   "role": "badge",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs3-lnote",
+   "beat": "b2",
+   "role": "label",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "McCabe CFG; the cfg is dim at b0, path P1 draws over it, path P2 draws, the CCN badge appears; the cfg reaches full strength at the end"
+}

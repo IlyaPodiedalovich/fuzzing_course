@@ -1,0 +1,22 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 5.88;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs20-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs20-p0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.1);
+  tl.fromTo("#fs20-p1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.202);
+  tl.fromTo("#fs20-p2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.304);
+  tl.fromTo("#fs20-p3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.406);
+  tl.fromTo("#fs20-p4", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.297, ease: "none" }, 1.508);
+  tl.fromTo("#fs20-a0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 2.68);
+  tl.fromTo("#fs20-a1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 2.765);
+  tl.fromTo("#fs20-a2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 2.85);
+  tl.fromTo("#fs20-a3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 2.935);
+  tl.fromTo("#fs20-a4", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.02);
+  tl.fromTo("#fs20-lead", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.297, ease: "none" }, 4.21);
+  tl.fromTo("#fs20-done", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 4.252);
+  tl.fromTo("#fs20-note", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 4.423);
+  tl.set("#fs20-leadh", { autoAlpha: 0 }, 0);
+  tl.to("#fs20-leadh", { autoAlpha: 1, duration: 0.12 }, 4.42384);
+  return tl;
+};

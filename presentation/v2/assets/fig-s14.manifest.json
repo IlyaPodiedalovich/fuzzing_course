@@ -1,0 +1,91 @@
+{
+ "id": "s14",
+ "duration": 5.41,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 5.41
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs14-left",
+   "beat": "b1",
+   "role": "column",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-right",
+   "beat": "b2",
+   "role": "column",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-lc0",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-lc1",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-lc2",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-lc3",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-rc0",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-rc1",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-rc2",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-rc3",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs14-note",
+   "beat": "b2",
+   "role": "note",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "two sample panels side by side, four chips each"
+}

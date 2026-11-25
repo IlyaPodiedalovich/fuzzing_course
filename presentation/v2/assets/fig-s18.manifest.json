@@ -1,0 +1,126 @@
+{
+ "id": "s18",
+ "duration": 6.34,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.834
+  },
+  {
+   "id": "b2",
+   "t0": 2.884,
+   "t1": 4.534
+  },
+  {
+   "id": "b3",
+   "t0": 4.584,
+   "t1": 6.344
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs18-p0",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs18-p1",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs18-p2",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs18-p3",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs18-p4",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs18-p5",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs18-a0",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-a1",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-a2",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-a3",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-a4",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-a5",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-k0",
+   "beat": "b3",
+   "role": "artifact chip",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-k1",
+   "beat": "b3",
+   "role": "artifact chip",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-k2",
+   "beat": "b3",
+   "role": "artifact chip",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs18-k3",
+   "beat": "b3",
+   "role": "artifact chip",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "six command tokens appear left to right, then their annotations, then the four artifact chips"
+}

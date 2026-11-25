@@ -1,0 +1,85 @@
+{
+ "id": "s21",
+ "duration": 4.7,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.716
+  },
+  {
+   "id": "b2",
+   "t0": 2.766,
+   "t1": 4.696
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs21-c1",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs21-c2",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs21-c3",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs21-c4",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs21-c5",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs21-v1",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs21-v2",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs21-v3",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs21-v4",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs21-v5",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "five stat cards for the DONE line; values appear in the second beat"
+}

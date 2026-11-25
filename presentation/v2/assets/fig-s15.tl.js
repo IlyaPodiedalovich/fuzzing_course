@@ -1,0 +1,26 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 6.18;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs15-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs15-l-h", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.1);
+  tl.fromTo("#fs15-l-c0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.185);
+  tl.fromTo("#fs15-l-c1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 1.355);
+  tl.fromTo("#fs15-l-c2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 1.44);
+  tl.fromTo("#fs15-l-c3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 1.525);
+  tl.fromTo("#fs15-l-a", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 1.525);
+  tl.fromTo("#fs15-l-bin", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.652);
+  tl.fromTo("#fs15-r-h", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 3.141);
+  tl.fromTo("#fs15-r-c0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 3.226);
+  tl.fromTo("#fs15-r-c1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.396);
+  tl.fromTo("#fs15-r-c2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.481);
+  tl.fromTo("#fs15-r-c3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.566);
+  tl.fromTo("#fs15-r-a", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 3.566);
+  tl.fromTo("#fs15-r-bin", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 3.693);
+  tl.fromTo("#fs15-note", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 3.991);
+  tl.set("#fs15-l-ah", { autoAlpha: 0 }, 0);
+  tl.to("#fs15-l-ah", { autoAlpha: 1, duration: 0.12 }, 1.7698);
+  tl.set("#fs15-r-ah", { autoAlpha: 0 }, 0);
+  tl.to("#fs15-r-ah", { autoAlpha: 1, duration: 0.12 }, 3.8108);
+  return tl;
+};

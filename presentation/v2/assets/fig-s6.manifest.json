@@ -1,0 +1,72 @@
+{
+ "id": "s6",
+ "duration": 5.07,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 3.345
+  },
+  {
+   "id": "b3",
+   "t0": 3.395,
+   "t1": 5.07
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs6-b1",
+   "beat": "b1",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs6-lccn",
+   "beat": "b2",
+   "role": "label",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs6-a1",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs6-b2",
+   "beat": "b2",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs6-a2",
+   "beat": "b3",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs6-b3",
+   "beat": "b3",
+   "role": "result",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs6-lnote",
+   "beat": "b3",
+   "role": "label",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "funnel: 8 functions by CCN, then the five criteria, then the single choice"
+}

@@ -1,0 +1,77 @@
+{
+ "id": "s8",
+ "duration": 5.83,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 3.175
+  },
+  {
+   "id": "b3",
+   "t0": 3.225,
+   "t1": 4.28
+  },
+  {
+   "id": "b4",
+   "t0": 4.33,
+   "t1": 5.835
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs8-b1",
+   "beat": "b1",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs8-a1",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs8-b2",
+   "beat": "b2",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs8-a2",
+   "beat": "b3",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs8-b3",
+   "beat": "b3",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs8-a3",
+   "beat": "b4",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs8-b4",
+   "beat": "b4",
+   "role": "stage",
+   "state0": "dimmed"
+  }
+ ],
+ "notes": "four step flow, one box and one arrow per beat, the flow closes at b4"
+}

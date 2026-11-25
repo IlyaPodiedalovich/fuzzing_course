@@ -1,0 +1,108 @@
+{
+ "id": "s20",
+ "duration": 5.88,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.63
+  },
+  {
+   "id": "b2",
+   "t0": 2.68,
+   "t1": 4.16
+  },
+  {
+   "id": "b3",
+   "t0": 4.21,
+   "t1": 5.885
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs20-p0",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs20-p1",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs20-p2",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs20-p3",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs20-p4",
+   "beat": "b1",
+   "role": "token",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs20-a0",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs20-a1",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs20-a2",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs20-a3",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs20-a4",
+   "beat": "b2",
+   "role": "annotation",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs20-lead",
+   "beat": "b3",
+   "role": "leader",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs20-done",
+   "beat": "b3",
+   "role": "badge",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs20-note",
+   "beat": "b3",
+   "role": "label",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "five libFuzzer tokens, their annotations, then the DONE badge"
+}

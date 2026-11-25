@@ -1,0 +1,60 @@
+{
+ "id": "s26",
+ "duration": 4.73,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 3.175
+  },
+  {
+   "id": "b3",
+   "t0": 3.225,
+   "t1": 4.73
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs26-b1",
+   "beat": "b1",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs26-a1",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs26-b2",
+   "beat": "b2",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs26-a2",
+   "beat": "b3",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs26-b3",
+   "beat": "b3",
+   "role": "stage",
+   "state0": "dimmed"
+  }
+ ],
+ "notes": "instrumentation, Atheris loop, coverage report"
+}

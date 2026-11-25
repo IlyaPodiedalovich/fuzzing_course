@@ -1,0 +1,20 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 5.59;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs25-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs25-ax", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.05);
+  tl.fromTo("#fs25-l0", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.4, ease: "none" }, 0.15);
+  tl.fromTo("#fs25-l1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.4, ease: "none" }, 0.15);
+  tl.fromTo("#fs25-l2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.4, ease: "none" }, 0.15);
+  tl.fromTo("#fs25-l3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.4, ease: "none" }, 0.15);
+  tl.fromTo("#fs25-b1", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.595, ease: "none" }, 1.242);
+  tl.fromTo("#fs25-b2", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.595, ease: "none" }, 1.37);
+  tl.fromTo("#fs25-v1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 1.71);
+  tl.fromTo("#fs25-v2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 1.795);
+  tl.fromTo("#fs25-b3", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.595, ease: "none" }, 3.24);
+  tl.fromTo("#fs25-b4", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.595, ease: "none" }, 3.367);
+  tl.fromTo("#fs25-v3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.707);
+  tl.fromTo("#fs25-v4", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.34, ease: "none" }, 3.792);
+  return tl;
+};

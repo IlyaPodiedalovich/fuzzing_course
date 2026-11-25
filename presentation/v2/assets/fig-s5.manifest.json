@@ -1,0 +1,187 @@
+{
+ "id": "s5",
+ "duration": 6.63,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.15
+  },
+  {
+   "id": "b1",
+   "t0": 1.2,
+   "t1": 3.665
+  },
+  {
+   "id": "b2",
+   "t0": 3.715,
+   "t1": 6.63
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs5-axis",
+   "beat": "b0",
+   "role": "axis",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l0",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l1",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l2",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l3",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l4",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l5",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l6",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-l7",
+   "beat": "b0",
+   "role": "label",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs5-b0",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b1",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b2",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b3",
+   "beat": "b1",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b4",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b5",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b6",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-b7",
+   "beat": "b2",
+   "role": "bar",
+   "state0": "zero width"
+  },
+  {
+   "id": "fs5-v0",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v1",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v2",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v3",
+   "beat": "b1",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v4",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v5",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v6",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-v7",
+   "beat": "b2",
+   "role": "value",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-selected",
+   "beat": "b2",
+   "role": "label",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs5-rejected",
+   "beat": "b1",
+   "role": "label",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "eight CCN bars, top four grow first, then the bottom four; load_env carries the rose accent and the label «выбор»"
+}

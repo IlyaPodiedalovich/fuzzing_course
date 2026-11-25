@@ -1,0 +1,26 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 5.5;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs17-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs17-s1", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.1);
+  tl.fromTo("#fs17-s2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.228);
+  tl.fromTo("#fs17-s3", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.355);
+  tl.fromTo("#fs17-as1", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 2.546);
+  tl.fromTo("#fs17-as2", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 2.631);
+  tl.fromTo("#fs17-as3", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 2.716);
+  tl.fromTo("#fs17-corpus", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.425, ease: "none" }, 2.588);
+  tl.fromTo("#fs17-ac", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 3.736);
+  tl.fromTo("#fs17-fuzz", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.425, ease: "none" }, 3.778);
+  tl.fromTo("#fs17-note", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 3.906);
+  tl.fromTo("#fs17-notetxt", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 3.948);
+  tl.set("#fs17-as1h", { autoAlpha: 0 }, 0);
+  tl.to("#fs17-as1h", { autoAlpha: 1, duration: 0.12 }, 2.7908);
+  tl.set("#fs17-as2h", { autoAlpha: 0 }, 0);
+  tl.to("#fs17-as2h", { autoAlpha: 1, duration: 0.12 }, 2.8758);
+  tl.set("#fs17-as3h", { autoAlpha: 0 }, 0);
+  tl.to("#fs17-as3h", { autoAlpha: 1, duration: 0.12 }, 2.9608000000000003);
+  tl.set("#fs17-ach", { autoAlpha: 0 }, 0);
+  tl.to("#fs17-ach", { autoAlpha: 1, duration: 0.12 }, 3.9808000000000003);
+  return tl;
+};

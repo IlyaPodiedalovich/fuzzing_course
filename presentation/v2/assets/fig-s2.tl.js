@@ -1,0 +1,25 @@
+window.FigTl = (gsap) => {
+  const tl = gsap.timeline({ paused: true });
+  const TOTAL = 4.73;
+  tl.set({}, {}, TOTAL);
+  tl.fromTo("#fs2-all", { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5, ease: "none" }, 0.0);
+  tl.fromTo("#fs2-bot", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.425, ease: "none" }, 1.1);
+  tl.fromTo("#fs2-lleft", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.228);
+  tl.fromTo("#fs2-lleft2", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 1.253);
+  tl.fromTo("#fs2-a-left", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 1.312);
+  tl.fromTo("#fs2-mid", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.425, ease: "none" }, 2.375);
+  tl.fromTo("#fs2-top", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.425, ease: "none" }, 2.502);
+  tl.fromTo("#fs2-a-mid", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 2.545);
+  tl.fromTo("#fs2-a-top", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.34, ease: "none" }, 2.63);
+  tl.fromTo("#fs2-lright", { autoAlpha: 0.16 }, { autoAlpha: 1, duration: 0.383, ease: "none" }, 2.8);
+  tl.fromTo("#fs2-a-right", { strokeDashoffset: 100 }, { strokeDashoffset: 0, duration: 0.383, ease: "none" }, 2.885);
+  tl.set("#fs2-a-lefth", { autoAlpha: 0 }, 0);
+  tl.to("#fs2-a-lefth", { autoAlpha: 1, duration: 0.12 }, 1.5568);
+  tl.set("#fs2-a-midh", { autoAlpha: 0 }, 0);
+  tl.to("#fs2-a-midh", { autoAlpha: 1, duration: 0.12 }, 2.7898);
+  tl.set("#fs2-a-toph", { autoAlpha: 0 }, 0);
+  tl.to("#fs2-a-toph", { autoAlpha: 1, duration: 0.12 }, 2.8748);
+  tl.set("#fs2-a-righth", { autoAlpha: 0 }, 0);
+  tl.to("#fs2-a-righth", { autoAlpha: 1, duration: 0.12 }, 3.16076);
+  return tl;
+};

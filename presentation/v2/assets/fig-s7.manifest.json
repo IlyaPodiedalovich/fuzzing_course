@@ -1,0 +1,78 @@
+{
+ "id": "s7",
+ "duration": 5.07,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.155
+  },
+  {
+   "id": "b2",
+   "t0": 2.205,
+   "t1": 3.175
+  },
+  {
+   "id": "b3",
+   "t0": 3.225,
+   "t1": 5.07
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs7-left",
+   "beat": "b1",
+   "role": "panel",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs7-lchips",
+   "beat": "b1",
+   "role": "chips",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs7-lbadge",
+   "beat": "b1",
+   "role": "badge",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs7-right",
+   "beat": "b2",
+   "role": "panel",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs7-rbadge",
+   "beat": "b2",
+   "role": "badge",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs7-veil",
+   "beat": "b3",
+   "role": "overlay",
+   "state0": "transparent"
+  },
+  {
+   "id": "fs7-cross",
+   "beat": "b3",
+   "role": "mark",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs7-hl",
+   "beat": "b3",
+   "role": "highlight",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "comparison panels; the verdict beat veils and crosses the left panel and puts a rose frame around the right one"
+}

@@ -1,0 +1,103 @@
+{
+ "id": "s15",
+ "duration": 6.18,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 3.091
+  },
+  {
+   "id": "b2",
+   "t0": 3.141,
+   "t1": 6.177
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs15-l-h",
+   "beat": "b1",
+   "role": "header",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-l-c0",
+   "beat": "b1",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-l-bin",
+   "beat": "b1",
+   "role": "binary",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-r-h",
+   "beat": "b2",
+   "role": "header",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-r-c0",
+   "beat": "b2",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-r-bin",
+   "beat": "b2",
+   "role": "binary",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-l-c1",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-l-c2",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-l-c3",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-r-c1",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-r-c2",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-r-c3",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs15-note",
+   "beat": "b2",
+   "role": "note",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "two build columns: compiler box, instrumentation chips, binary"
+}

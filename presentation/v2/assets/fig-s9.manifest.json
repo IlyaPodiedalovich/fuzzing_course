@@ -1,0 +1,59 @@
+{
+ "id": "s9",
+ "duration": 5.58,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 3.09
+  },
+  {
+   "id": "b3",
+   "t0": 3.14,
+   "t1": 4.11
+  },
+  {
+   "id": "b4",
+   "t0": 4.16,
+   "t1": 5.58
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs9-c1",
+   "beat": "b1",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs9-c2",
+   "beat": "b2",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs9-c3",
+   "beat": "b3",
+   "role": "card",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs9-c4",
+   "beat": "b4",
+   "role": "card",
+   "state0": "dimmed"
+  }
+ ],
+ "notes": "2x2 grid of principles 1 to 4, one card per beat"
+}

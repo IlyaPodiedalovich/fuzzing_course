@@ -1,0 +1,85 @@
+{
+ "id": "s29",
+ "duration": 3.54,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 3.54
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs29-left",
+   "beat": "b1",
+   "role": "column",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-right",
+   "beat": "b2",
+   "role": "column",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-lc0",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-lc1",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-lc2",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-lc3",
+   "beat": "b1",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-rc0",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-rc1",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-rc2",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs29-rc3",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  }
+ ],
+ "notes": "JVM column and Go column, four chips each"
+}

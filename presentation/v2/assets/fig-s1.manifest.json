@@ -1,0 +1,109 @@
+{
+ "id": "s1",
+ "duration": 6.35,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 3.091
+  },
+  {
+   "id": "b2",
+   "t0": 3.141,
+   "t1": 6.346
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs1-n1",
+   "beat": "b1",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-a12",
+   "beat": "b1",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs1-n2",
+   "beat": "b1",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-a23",
+   "beat": "b1",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs1-n3",
+   "beat": "b1",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-a34",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs1-n4",
+   "beat": "b2",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-diamond",
+   "beat": "b2",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-ada",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs1-adn",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs1-n6",
+   "beat": "b2",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-n7",
+   "beat": "b2",
+   "role": "node",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs1-aret1",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs1-aret2",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  }
+ ],
+ "notes": "loop figure; wrapper rises 0.5 s, informative tweens 0.45 s each, the last beat holds the settled picture"
+}

@@ -1,0 +1,85 @@
+{
+ "id": "s13",
+ "duration": 4.56,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.496
+  },
+  {
+   "id": "b2",
+   "t0": 2.546,
+   "t1": 4.561
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs13-p1",
+   "beat": "b1",
+   "role": "panel",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs13-b1",
+   "beat": "b1",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs13-a1",
+   "beat": "b1",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs13-b2",
+   "beat": "b1",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs13-p2",
+   "beat": "b2",
+   "role": "panel",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs13-b3",
+   "beat": "b2",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs13-c1",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "hidden"
+  },
+  {
+   "id": "fs13-a2",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs13-b4",
+   "beat": "b2",
+   "role": "box",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs13-l1",
+   "beat": "b2",
+   "role": "label",
+   "state0": "hidden"
+  }
+ ],
+ "notes": "stubs panel, then the include trick panel"
+}

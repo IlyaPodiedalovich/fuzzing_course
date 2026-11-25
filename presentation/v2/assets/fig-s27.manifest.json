@@ -1,0 +1,78 @@
+{
+ "id": "s27",
+ "duration": 5.16,
+ "viewBox": "0 0 800 900",
+ "beats": [
+  {
+   "id": "b0",
+   "t0": 0.0,
+   "t1": 1.05
+  },
+  {
+   "id": "b1",
+   "t0": 1.1,
+   "t1": 2.07
+  },
+  {
+   "id": "b2",
+   "t0": 2.12,
+   "t1": 3.6
+  },
+  {
+   "id": "b3",
+   "t0": 3.65,
+   "t1": 5.155
+  }
+ ],
+ "elements": [
+  {
+   "id": "fs27-b1",
+   "beat": "b1",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs27-a1",
+   "beat": "b2",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs27-b2",
+   "beat": "b2",
+   "role": "stage",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs27-c1",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs27-c2",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs27-c3",
+   "beat": "b2",
+   "role": "chip",
+   "state0": "dimmed"
+  },
+  {
+   "id": "fs27-a2",
+   "beat": "b3",
+   "role": "arrow",
+   "state0": "undrawn"
+  },
+  {
+   "id": "fs27-b3",
+   "beat": "b3",
+   "role": "stage",
+   "state0": "dimmed"
+  }
+ ],
+ "notes": "raw bytes into the FuzzedDataProvider, three consume calls, then the target call"
+}
