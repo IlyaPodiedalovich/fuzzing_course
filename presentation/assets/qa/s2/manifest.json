@@ -1,0 +1,19 @@
+{
+  "id": "s2",
+  "duration": 5,
+  "viewBox": "0 0 1776 775",
+  "beats": [
+    {"id": "b0", "t0": 0.0, "t1": 1.0},
+    {"id": "b1", "t0": 1.0, "t1": 2.4},
+    {"id": "b2", "t0": 2.2, "t1": 4.6}
+  ],
+  "elements": [
+    {"id": "fs2-base", "beat": "b0", "role": "base", "state0": "hidden"},
+    {"id": "fs2-bottom", "beat": "b1", "role": "accent", "state0": "hidden"},
+    {"id": "fs2-middle-rect", "beat": "b2", "role": "accent-outline", "state0": "hidden"},
+    {"id": "fs2-arrows", "beat": "b2", "role": "draw", "state0": "undrawn"},
+    {"id": "fs2-middle-tips", "beat": "b2", "role": "accent", "state0": "hidden"},
+    {"id": "fs2-right-note", "beat": "b2", "role": "accent", "state0": "hidden"}
+  ],
+  "notes": "base = full stack (compiler bottom, harness middle, fuzzer top). b1 lights the bottom box and its left annotation; b2 lights the middle box, the arrows (bottom→middle→top) and the right annotation."
+}

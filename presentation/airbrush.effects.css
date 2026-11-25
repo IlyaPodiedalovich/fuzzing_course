@@ -1,0 +1,9 @@
+/* Airbrush / 70s-80s — static corner glows (factura layer for the deck).
+ * Factura rules kept: static decor behind content, print-frozen, contrast preserved. */
+.slide::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(70% 55% at 85% -5%, rgba(255,107,53,.14) 0%, transparent 55%),
+    radial-gradient(65% 50% at 5% 105%, rgba(255,46,136,.12) 0%, transparent 60%);
+}
+@media print{ .slide::before{ background:none; } }

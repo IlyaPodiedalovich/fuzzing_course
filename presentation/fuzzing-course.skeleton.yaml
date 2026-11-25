@@ -15,7 +15,11 @@ slides:
 - id: t
   title: "Курс по фаззингу"
   layout: section
-  caption: "AFL · libFuzzer · Atheris: полный цикл, от выбора функции до покрытия"
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      AFL · libFuzzer · Atheris: полный цикл, от выбора функции до покрытия
   anim:
     duration: 4
     beats:
@@ -36,7 +40,11 @@ slides:
 - id: sec-model
   title: "Модель и выбор цели"
   layout: section
-  caption: "Общая идея · lizard · критерии выбора"
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Общая идея · lizard · критерии выбора
   anim:
     duration: 3
     beats:
@@ -317,7 +325,11 @@ slides:
 - id: sec-wrapper
   title: "Обёртки и сборка"
   layout: section
-  caption: "Правила оформления, приёмы, ошибки сборки"
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Правила оформления, приёмы, ошибки сборки
   anim:
     duration: 3
     beats:
@@ -666,7 +678,11 @@ slides:
 - id: sec-fuzz
   title: "Прогон и покрытие"
   layout: section
-  caption: "Корпус · AFL · libFuzzer · покрытие"
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Корпус · AFL · libFuzzer · покрытие
   anim:
     duration: 3
     beats:
@@ -992,7 +1008,11 @@ slides:
 - id: sec-python
   title: "Atheris, Jazzer и практика"
   layout: section
-  caption: "Python · Jazzer · Go · задание и контрольные вопросы"
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Python · Jazzer · Go · задание и контрольные вопросы
   anim:
     duration: 3
     beats:
@@ -1049,15 +1069,11 @@ slides:
     text: |
       import sys
       import atheris
-
       with atheris.instrument_imports():
           from my_target_module import target_function
-
       def TestOneInput(data):
           fdp = atheris.FuzzedDataProvider(data)
           mode = fdp.ConsumeIntInRange(0, 5)
-          ...
-
       atheris.Setup(sys.argv, TestOneInput)
       atheris.Fuzz()
   - id: a1
@@ -1088,7 +1104,7 @@ slides:
     Порядок вызовов Consume* фиксирован от итерации к итерации, иначе покрытие невоспроизводимо.
 
 - id: s28
-  title: "Atheris: демо watcher и замечания"
+  title: "Atheris: демо watcher и замечания по итогам 10k runs"
   layout: content-left
   blocks:
   - id: a0
