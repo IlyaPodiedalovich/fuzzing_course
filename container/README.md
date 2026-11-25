@@ -52,3 +52,33 @@ docker exec -it -w /opt/atheris-src/watcher fuzz-py bash -c '
 - Проверено (см. `course.md`, разделы 3–5): референс cronie `fuzz_load_entry`
   (libFuzzer), решение `fuzz_load_env` (оба фаззера), shadow `fuzz_sgetpwent`
   (оба фаззера), watcher (atheris).
+
+## Экспорт / импорт образов
+
+Готовые архивы образов — в `images/` (не коммитятся; ~355 МБ и ~183 МБ соответственно в gzip-виде):
+
+| Архив | Образ |
+|---|---|
+| `images/fuzz-c.tar.gz` | `fuzz-c:latest` (C-практика) |
+| `images/fuzz-py.tar.gz` | `fuzz-py:latest` (Atheris) |
+
+Чтобы сохранить текущие образы заново:
+
+```bash
+docker save fuzz-c:latest  | gzip -1 > images/fuzz-c.tar.gz
+docker save fuzz-py:latest | gzip -1 > images/fuzz-py.tar.gz
+```
+
+Чтобы загрузить образ на другой хост (или восстановить после удаления):
+
+```bash
+docker load -i images/fuzz-c.tar.gz    # грузит fuzz-c:latest
+docker load -i images/fuzz-py.tar.gz    # грузит fuzz-py:latest
+```
+
+После импорта образа поднимаются контейнеры без монтирований:
+
+```bash
+docker run -d --name fuzz-course --rm fuzz-c:latest sleep infinity
+docker run -d --name fuzz-py --rm fuzz-py:latest sleep infinity
+```

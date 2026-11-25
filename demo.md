@@ -86,7 +86,7 @@ make afl              # afl-clang-fast → fuzz_load_env_afl
 | Флаг clang/afl | Значение |
 |---|---|
 | `-fsanitize=fuzzer` | встроить цикл фаззинга libFuzzer: главная функция `main` и битмап покрытий; без этого нет фаззера вообще |
-| `-fsanitize=address` | встроить AddressSanitizer: находит выходы за границы кучи, use-after-free, double-free — это и есть «крах», который ищет фаззер |
+| `-fsanitize=address` | встроить AddressSanitizer: находит выходы за границы кучи, use-after-free, double-free — это и есть «сбой», который ищет фаззер |
 | `-g` | включить отладочную информацию: ASan/libFuzzer печатают читаемые отчёты (функции, строки) вместо адресов |
 | `-O1` | оптимизация уровня 1: быстро и без агрессивной удаления «мёртвого» кода (`-O0` — на порядки медленнее, `-O2/-O3` искажают покрытие) |
 | `-DHAVE_CONFIG_H` | определить макрос `HAVE_CONFIG_H` — cronie через `config.h` решает, что включать при сборке |
@@ -135,7 +135,7 @@ AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 afl-fuzz -i corpus -o out -V 20 ./fuzz_l
 
 то есть уведомление о краше уходит **через пайп во внешнюю утилиту**
 (`systemd-coredump`). Внешний обработчик задерживает доставку уведомления в
-фаззер через `waitpid()`, поэтому крах может быть ошибочно классифицирован
+фаззер через `waitpid()`, поэтому сбой может быть ошибочно классифицирован
 как таймаут (`program timeout`), а краши не будут зафиксированы.
 
 Проверка делает `afl-fuzz` в `check_crash_handling()` (`src/afl-fuzz-init.c`).
@@ -282,7 +282,7 @@ mkdir -p /tmp/wcorpus && printf "* * * * *\necho hi\n" > /tmp/wcorpus/seed1
 Ожидаемо в конце: `#10000  DONE  cov: 262 ft: 756 corp: 29/210b lim: 34`.
 
 **Что показать.** `instrument_imports()` до импорта цели,
-`FuzzedDataProvider` для нарезки байт-потока, `Setup` + `Fuzz()`.
+`FuzzedDataProvider` для разбора байт-потока, `Setup` + `Fuzz()`.
 
 **Покрытие (~15 сек) — coverage.py:**
 

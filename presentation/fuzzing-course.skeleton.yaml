@@ -1,0 +1,1185 @@
+skeleton_version: 1
+meta:
+  title: "Курс по фаззингу: AFL, libFuzzer, Atheris"
+  audience: "Коллега, знающий C и Python"
+  lang: ru
+  target: html
+  canvas: "16:9"
+  design_ref: design.md
+  tone: academic
+  anim_role: factual
+  source: course.md
+
+slides:
+
+- id: t
+  title: "Курс по фаззингу"
+  layout: section
+  caption: "AFL · libFuzzer · Atheris: полный цикл, от выбора функции до покрытия"
+  anim:
+    duration: 4
+    beats:
+    - id: b0
+      pose: |
+        cold base: empty canvas
+      change: title panel rises in
+    - id: b1
+      pose: |
+        full title: «Курс по фаззингу» и подзаголовок
+      change: title and subtitle settle
+    settled: |
+      title panel centered, subtitle below it, canvas dark
+  notes: |
+    Открывать: 60 минут теории, затем самостоятельная практика.
+    Фаззинг является автоматизированным тестированием, которое находит сбои программы.
+
+- id: sec-model
+  title: "Модель и выбор цели"
+  layout: section
+  caption: "Общая идея · lizard · критерии выбора"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: dim section title
+      change: title fades in
+    - id: b1
+      pose: |
+        full section title and caption line
+      change: caption appears
+    settled: |
+      centered section title with caption, dark canvas
+  notes: |
+    От общей модели к выбору функции. Первый вопрос: что именно делает фаззер?
+
+- id: s1
+  title: "Coverage-guided: цикл обратной связи"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Coverage-guided фаззинг: автоматизированное тестирование, при котором инструмент генерирует
+      входы, подает их в цель и сохраняет только те, что открывают новое покрытие:
+      рёбра графа управления потоком. Сбои находятся как аномалии: исключения,
+      нарушения памяти, таймауты.
+  - id: a1
+    type: bullet
+    text: |
+      Метки покрытия встраиваются компилятором при сборке; без них фаззер не видит
+      путь выполнения вообще
+      Цель фаззера не доказать корректность программы, а найти несоответствие
+      между тем, как она должна реагировать на вход, и как она на самом деле реагирует
+  figure:
+    kind: diagram
+    prompt: |
+      Coverage-guided fuzzing loop as a horizontal cycle of six nodes with directional arrows:
+      (1) «Стартовый корпус», then (2) «Мутация входов», then (3) «Обёртка и инструментированная цель», (исполнение), then (4) «Битмап покрытия», then the decision diamond (5) «Новое покрытие?», branch «Да» leads to (6) «Сохранить в корпус», which returns to (1); branch «Нет» leads to «Отбросить вход», which returns to (2).
+      Style: dark violet background (#1a0f2e), orange (#ff6b35) and rose (#ff2e88) accents, clean engineering diagram; all six nodes labeled; arrows show direction; decision diamond labeled «Новое покрытие?»; legible labels; no external content.
+    caption: "Цикл обратной связи"
+  anim:
+    duration: 6
+    beats:
+    - id: b0
+      pose: |
+        cold base: six nodes dim, arrows faint
+      change: base rises in
+    - id: b1
+      pose: |
+        nodes 1 through 3 lit, path from (1) to (2) to (3) drawn
+      change: nodes 1 through 3 accent, arrows draw
+      accent: путь от (1) до (3)
+    - id: b2
+      pose: |
+        decision diamond lit, both branches drawn: «Да» leads to «Сохранить в корпус», «Нет» leads to «Отбросить вход»
+      change: diamond and branches draw
+      accent: ромб и ветвь «Да»
+    settled: |
+      full loop lit, all nodes and arrows, both branches visible, caption «Цикл обратной связи»
+  notes: |
+    Фаззер не знает ничего, кроме битмапа и входов. Корпус растёт только за счёт
+    новых путей выполнения.
+
+- id: s2
+  title: "Три уровня инструмента"
+  layout: diagram
+  figure:
+    kind: diagram
+    prompt: |
+      Three stacked boxes, bottom to top:
+      bottom box «Компилятор и флаги» (clang -fsanitize=fuzzer,address or afl-clang-fast, which embeds instrumentation and a sanitizer),
+      middle box «Обёртка (harness)» (превращает сырые байты в форму, ожидаемую целью: файл, структуру или аргументы),
+      top box «Фаззер (afl-fuzz; libFuzzer; atheris)» (мутирует входы, оценивает покрытие, сохраняет корпус, останавливается на сбое).
+      Annotations in the margin: left, «инструментация при сборке» pointing at the bottom box; right, «исполнение» pointing at the top box.
+      Style: dark violet background (#1a0f2e), orange (#ff6b35) and rose (#ff2e88) accents, clean engineering diagram, legible labels; no external content.
+    caption: "Три слоя: компилятор, обёртка и фаззер"
+  anim:
+    duration: 5
+    beats:
+    - id: b0
+      pose: |
+        cold base: three boxes dim, stack lines faint
+      change: stack rises in
+    - id: b1
+      pose: |
+        bottom box lit and annotation «инструментация при сборке» visible
+      change: bottom box and its annotation accent
+      accent: «Компилятор и флаги»
+    - id: b2
+      pose: |
+        middle box lit and annotation visible, arrows from top to middle, «исполнение» annotation on the right
+      change: middle box lit, arrows from (1) to (2) and from (2) to (3) drawn
+      accent: «Обёртка»
+    settled: |
+      full stack lit: bottom «Компилятор и флаги», middle «Обёртка», top «Фаззер», annotations on both sides, caption visible
+  notes: |
+    Компилятор отвечает за покрытие, обёртка отвечает за форму входа,
+    фаззер отвечает за цикл. Без инструментации фаззер не видит путь выполнения вообще.
+
+- id: s3
+  title: "lizard: метрики и отчёт"
+  layout: table
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      lizard является статическим анализатором (Python): считает метрики без заголовков, без
+      сборки и без запуска. CCN обозначает число независимых путей в функции: чем выше
+      CCN, тем богаче ландшафт для фаззера. Это эвристический индикатор, а не гарантия.
+  - id: a1
+    type: table
+    columns: ["Колонка", "Смысл"]
+    rows:
+    - ["NLOC", "непустые строки кода без комментариев"]
+    - ["CCN", "число линейно независимых путей"]
+    - ["token", "количество токенов в теле функции"]
+    - ["PARAM", "количество параметров"]
+    - ["length", "размер функции в строках"]
+    - ["location", "имя@строки@файл"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: text and metrics table (6 rows)
+      change: text wave, then table rows appear
+    settled: |
+      full slide: title, intro line, metrics table
+  notes: |
+    CCN является первым фильтром для выбора цели, но не решающим критерием.
+    Запуск и ключи находятся на следующем слайде.
+
+- id: s4
+  title: "lizard: запуск и ключи"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      lizard /opt/fuzzenv/src/cronie-1.5.7/src/*.c: рекурсивный обход каталогов, формат lizard <dir>
+  - id: a1
+    type: bullet
+    text: |
+      -C 20: warning, если CCN функции выше порога
+      -s cyclomatic_complexity: сортировка по CCN
+      -w: только warnings, clang-style (для CI)
+      -l: язык анализа (cpp, python)
+      --csv/--xml/--html: машинный отчёт
+      --compact: скрыть анонимные функции с CCN 1
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: intro and 6 key bullets
+      change: blocks wave in
+    settled: |
+      full slide: title, intro line, key list
+  notes: |
+    Те же ключи и таблица NLOC/CCN работают и для Python:
+    lizard /opt/atheris-src/watcher/watcher/common/utils.py
+
+- id: s5
+  title: "Топ-8 функций cronie по CCN"
+  layout: table
+  blocks:
+  - id: a0
+    type: table
+    columns: ["Функция", "Файл", "CCN", "NLOC"]
+    rows:
+    - ["child_process", "do_command.c", "84", "324"]
+    - ["load_entry", "entry.c", "67", "260"]
+    - ["parse_args", "crontab.c", "54", "166"]
+    - ["edit_cmd", "crontab.c", "52", "217"]
+    - ["main", "cron.c", "50", "192"]
+    - ["load_env", "env.c", "31", "88"]
+    - ["cron_popen", "popen.c", "27", "88"]
+    - ["load_user", "user.c", "25", "96"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full table: header and 8 rows
+      change: table appears
+    settled: |
+      full slide: title and CCN table
+  notes: |
+    Наше решение, load_env, несмотря на CCN 84 у child_process; следующие слайды объясняют выбор.
+
+- id: s6
+  title: "Пять критериев выбора цели"
+  layout: grid-5
+  blocks:
+  - id: a0
+    type: card
+    title: "Вход: сырые байты"
+    body: "не argv и не сокет"
+  - id: a1
+    type: card
+    title: "Минимум побочных эффектов"
+    body: "без exec, файлов и сети"
+  - id: a2
+    type: card
+    title: "Минимум зависимостей"
+    body: "меньше .c-файлов"
+  - id: a3
+    type: card
+    title: "Парсинг неструктурированного входа"
+    body: "источники багов памяти"
+  - id: a4
+    type: card
+    title: "Не дубликат"
+    body: "load_entry уже покрыта"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full grid: 5 cards
+      change: cards appear one by one
+    settled: |
+      full slide: title and 5 cards
+  notes: |
+    CCN является только первым фильтром. Затем идут достижимость и воспроизводимость.
+
+- id: s7
+  title: "Выбор: load_env, а не child_process"
+  layout: full
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      load_env находится в src/env.c:181, имеет CCN 31 и NLOC 88. Конечный автомат для парсинга
+      строк окружения NAME=VALUE: кавычки, экранирование, таблица состояний
+      (NAMEI ... ERROR).
+  - id: a1
+    type: text
+    text: |
+      child_process (CCN 84) слишком рискованен: exec процессов и запись файлов.
+      load_entry уже покрыта референс-обёрткой. parse_args берёт argv, а не байты.
+      edit_cmd работает с файлами crontab и терминалом. main является точкой входа.
+      cron_popen использует popen(), load_user требует парсинга /etc/passwd.
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: определение и причины отказа
+      change: blocks wave in
+    settled: |
+      full slide: title, определение, причины отказа
+  notes: |
+    Выбор является компромиссом между интересностью (CCN), достижимостью
+    (побочные эффекты) и воспроизводимостью (минимум зависимостей).
+
+- id: sec-wrapper
+  title: "Обёртки и сборка"
+  layout: section
+  caption: "Правила оформления, приёмы, ошибки сборки"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: dim section title
+      change: title fades in
+    - id: b1
+      pose: |
+        full section title and caption
+      change: caption appears
+    settled: |
+      centered title and caption
+  notes: |
+    Обёртка является тонкой программой, которая превращает сырые байты в форму,
+    понятную тестируемой функции.
+
+- id: s8
+  title: "Анатомия обёртки"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: bullet
+    text: |
+      получает сырые байты от фаззера
+      превращает их в то, что ожидает цель
+      вызывает целевую функцию
+      не накапливает состояние между вызовами
+  - id: a1
+    type: bullet
+    text: |
+      один файл fuzz_<функция>.c на все фаззеры
+      один путь на фаззер: #ifdef __AFL_FUZZ_TESTCASE_BUF
+      заголовочный комментарий: цель, функция, команды сборки
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: 4 шага и 3 правила
+      change: blocks wave in
+    settled: |
+      full slide: title, steps, rules
+  notes: |
+    Обёртка является точкой входа, а не программой: она ничего не делает,
+    кроме вызова цели.
+
+- id: s9
+  title: "Принципы 1–4: простота и детерминированность"
+  layout: cards
+  blocks:
+  - id: a0
+    type: card
+    title: "1. Простота"
+    body: "байты, форма, цель, 0. Никакой инициализации, логирования и собственной обработки ошибок"
+  - id: a1
+    type: card
+    title: "2. Одна обёртка, одна цель"
+    body: "один fuzz_<функция>.c означает один сценарий или одну функцию"
+  - id: a2
+    type: card
+    title: "3. Детерминированность"
+    body: "сброс состояния (LineNumber = 0), никаких exit, файлов и сети"
+  - id: a3
+    type: card
+    title: "4. Проверки до вызова"
+    body: "нулевой или слишком большой вход означает ранний возврат"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full grid: 4 cards
+      change: cards appear one by one
+    settled: |
+      full slide: title and 4 cards
+  notes: |
+    Принципы задают форму любой обёртки: C и Python.
+
+- id: s10
+  title: "Принципы 5–8: границы ответственности"
+  layout: cards
+  blocks:
+  - id: a0
+    type: card
+    title: "5. Не перехватывать лишнее"
+    body: "только документированные ошибки, остальное всплывает"
+  - id: a1
+    type: card
+    title: "6. Формат входа принадлежит обёртке"
+    body: "fmemopen, FuzzedDataProvider или dispatch-байт; выбор фиксируется в комментарии"
+  - id: a2
+    type: card
+    title: "7. Заголовочный комментарий"
+    body: "цель, функция, формат входа, команды сборки, сиды"
+  - id: a3
+    type: card
+    title: "8. Python-специфика"
+    body: "instrument_imports() до импорта цели, не внутри TestOneInput"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full grid: 4 cards
+      change: cards appear one by one
+    settled: |
+      full slide: title and 4 cards
+  notes: |
+    Перехватываем только то, что цель документирует как нормальный отказ.
+
+- id: s11
+  title: "Каркас обёртки: AFL vs libFuzzer"
+  layout: full
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      #ifdef __AFL_FUZZ_TESTCASE_BUF
+      /* AFL: persistent mode через fork-сервер */
+      int main(void) {
+          __AFL_INIT();
+          __AFL_FUZZ_INIT();
+          const unsigned char *data = __AFL_FUZZ_TESTCASE_BUF;
+          while (__AFL_LOOP(10000)) {
+              size_t size = __AFL_FUZZ_TESTCASE_LEN;
+              do_fuzz(data, size);
+          }
+          return 0;
+      }
+      #else
+      /* libFuzzer: главный main генерирует clang'ом */
+      int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+          do_fuzz(data, size);
+          return 0;
+      }
+      #endif
+  - id: a1
+    type: text
+    text: |
+      __AFL_LOOP(10000) является persistent mode: на порядок быстрее, чем перезапуск
+      процесса. Требует детерминированности: нет утечек, нет exit, нет глобального состояния.
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: code block and one note line
+      change: code appears, note appears
+    settled: |
+      full slide: title, code, note
+  notes: |
+    Один файл, один кодовый путь: #ifdef определяет, для какого фаззера собирается обёртка.
+
+- id: s12
+  title: "Приёмы 1–3: dispatch, fmemopen, структура"
+  layout: full
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Dispatch-байт: первый байт выбирает функцию или режим, остальные являются данными
+      для выбранного режима. В targets/nova/fuzz_libvirt_config.py:
+      data[0] % 5 выбирает один из пяти XML-парсеров libvirt, а data[1:] хранит XML.
+  - id: a1
+    type: text
+    text: |
+      fmemopen(): буфер фаззера превращают в FILE*, если цель читает файл.
+      В обёртке load_env: fmemopen(data, size, "r"), после чего цель получает
+      обычный FILE* и не знает, что её фаззят.
+  - id: a2
+    type: text
+    text: |
+      Структура: поля извлекаются последовательно, одно за другим, как
+      FuzzedDataProvider в Python, только руками: mode = data[0],
+      n = (data[1] << 8) | data[2], payload = data + 3.
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: three приёма
+      change: blocks wave in
+    settled: |
+      full slide: title and three приёма
+  notes: |
+    Фиксируйте выбранный приём в комментарии к обёртке.
+
+- id: s13
+  title: "Приёмы 4–5: стабы и include-trick"
+  layout: full
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Стабы: внешние зависимости чужой функции заменяют поддельными реализациями.
+      В fuzz_slirp_input.c весь callback-интерфейс Slirp подменяют стабами;
+      в Python-обёртках это mock.patch. Стаб является самой наивной реальной реализацией, но без
+      побочных эффектов.
+  - id: a1
+    type: text
+    text: |
+      Include-trick: статическая функция из чужого файла собирается через подмену main.
+      #define main fuzz_original_main, затем #include "api.c" вместо подключения
+      заголовка #include "api.h".
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: two приёма
+      change: blocks wave in
+    settled: |
+      full slide: title and two приёма
+  notes: |
+    Include-trick является последним доступным приёмом, когда API недоступен или не документирован.
+
+- id: s14
+  title: "Разбор образцов: sgetpwent и load_env"
+  layout: full
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Образец sgetpwent из shadow-utils является одной обёрткой, выполненной по правилам
+      «один файл на все фаззеры»: входом служит строка /etc/passwd
+      (name:password:uid:gid:gecos:homedir:shell); нулевые байты заменяются
+      пробелами, потому что passwd не содержит NUL, и тогда фаззер не получит
+      этого диапазона; размер входа ограничен 1024 байтами; применено #undef unused
+      (см. §4.3); защита !defined(__AFL_COMPILER).
+  - id: a1
+    type: text
+    text: |
+      Наше решение, fuzz_load_env.c: #define MAIN_PROGRAM делает глобальные
+      cronie доступными в нашей единице трансляции (см. §4.3); fmemopen()
+      превращает буфер в FILE*, поэтому цель получает обычный FILE*;
+      LineNumber = 0 перед каждым входом сбрасывает глобальный счётчик строк;
+      статический буфер envstr выделяется один раз.
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: two образца
+      change: blocks wave in
+    settled: |
+      full slide: title and both samples
+  notes: |
+    Заголовочный комментарий является минимальной документацией, которую увидит читатель.
+
+- id: s15
+  title: "Сборка: инструментация и флаги"
+  layout: full
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      libFuzzer собирается флагами clang -fsanitize=fuzzer,address -g -O1:
+      -fsanitize=fuzzer встраивает битмап покрытий и главный main,
+      -fsanitize=address включает AddressSanitizer, который находит нарушения
+      памяти, -g даёт отладочную информацию, -O1 является компромиссом между скоростью
+      и стабильностью покрытия. AFL собирается через afl-clang-fast -g -O1 без
+      sanitizer: у него собственный битмап в 64K, fork-сервер и макросы persistent mode.
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: text block
+      change: blocks wave in
+    settled: |
+      full slide: title and text
+  notes: |
+    Фаззим функцию, а не демон: компиляция только нужных .c-файлов.
+
+- id: s16
+  title: "Сборка: кейс cronie и ошибки"
+  layout: full
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      clang -fsanitize=fuzzer,address -g -O1 -DHAVE_CONFIG_H \
+          -I/opt/fuzzenv/src/cronie-1.5.7/src -I/opt/fuzzenv/src/cronie-1.5.7 \
+          fuzz_load_env.c /opt/fuzzenv/src/cronie-1.5.7/src/env.c \
+          /opt/fuzzenv/src/cronie-1.5.7/src/misc.c \
+          /opt/fuzzenv/src/cronie-1.5.7/src/pw_dup.c -o fuzz_load_env_lf
+  - id: a1
+    type: text
+    text: |
+      Пример cronie 1.5.7: 
+      берём config.h.manual и cron-paths.h.manual и линкуем только env.c, misc.c
+      и pw_dup.c с обёрткой. Ошибки сборки: undefined reference LineNumber
+      означает, что глобальные cronie не определены в нашей единице трансляции
+      (решается через #define MAIN_PROGRAM); undefined identifier 'unused' означает,
+      что объявлен макрос unused в defines.h shadow (решается через #undef unused
+      перед AFL-веткой).
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: command and кейс text
+      change: blocks wave in
+    settled: |
+      full slide: title, command, кейс and errors
+  notes: |
+    Полная сборка находится в exercises/full-cycle/solution/Makefile.
+
+- id: sec-fuzz
+  title: "Прогон и покрытие"
+  layout: section
+  caption: "Корпус · AFL · libFuzzer · покрытие"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: dim section title
+      change: title fades in
+    - id: b1
+      pose: |
+        full section title and caption
+      change: caption appears
+    settled: |
+      centered title and caption
+  notes: |
+    Цель: прогнать оба фаззера и измерить покрытие.
+
+- id: s17
+  title: "Стартовый корпус"
+  layout: table
+  blocks:
+  - id: a0
+    type: table
+    columns: ["Файл", "Содержимое", "Что демонстрирует"]
+    rows:
+    - ["seed1", "SHELL=, PATH=, строка задания", "простое назначение и строка crontab"]
+    - ["seed2", "MAILTO=, строка с /usr/bin/true", "назначение с адресом и командой"]
+    - ["seed3", "FOO=\"a b c\", комментарий, BAR=12345", "кавычки и целое значение"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full table: 3 rows
+      change: table appears
+    settled: |
+      full slide: title and 3-row table
+  notes: |
+    Перед запуском проверьте каждый сид. Добавьте 1–2 файла, покрывающие
+    ветви, которые сиды не задевают (пустые значения, экранирование).
+
+- id: s18
+  title: "AFL: команда и элементы"
+  layout: full
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1 afl-fuzz -i corpus -o out -V 20 ./fuzz_load_env_afl
+  - id: a1
+    type: bullet
+    text: |
+      afl-fuzz: драйвер; мутирует входы и сохраняет новые пути
+      -i corpus: обязателен, папка с стартовым корпусом
+      -o out: обязателен, out/default/ содержит queue/, crashes/, hangs/, fuzzer_stats
+      -V 20: время фаззинга; без него прогон длится до Ctrl-C
+      бинарник: позиционный аргумент, путь к обёртке
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: command and element list
+      change: blocks wave in
+    settled: |
+      full slide: title, command line, element list
+  notes: |
+    Полезно добавить: -t msec, -m megs, -x file (словарь), -E execs, -s seed.
+
+- id: s19
+  title: "AFL: метрики и артефакты"
+  layout: table
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Битмап является фиксированным массивом байт. Инструментированная программа, исполняя вход, увеличивает ячейку на каждом ребре графа управления потоком (переход между базовыми блоками): каждому ребру соответствует уникальный индекс, и вход «закрашивает» ячейки на пройденных рёбрах.
+      Измеренный прогон за 20 секунд: execs 1.70M (~85k/s), корпус вырос с 3 до 71,
+      edges 55/331, stability 98.18%, bitmap_cvg 16.62%, saved_crashes 0
+  - id: a1
+    type: table
+    columns: ["Метка", "Смысл"]
+    rows:
+    - ["time", "время работы"]
+    - ["execs_done", "всего выполненных входов"]
+    - ["corpus (favored)", "входов / избранных"]
+    - ["stability", "доля детерминированных входов; <99%: недетерминизм"]
+    - ["edges_found", "открытые рёбра битмапы"]
+    - ["bitmap_cvg", "доля закрашенной битмапы (0–100%)"]
+    - ["saved_crashes", "сохранённые аварийные входы"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: bitmap definition, snapshot line and 7-row table
+      change: blocks wave in
+    settled: |
+      full slide: title, bitmap definition, snapshot, table
+  notes: |
+    out/default/ содержит queue/, crashes/, hangs/, fuzzer_stats и plot_data.
+    Проверка: grep -E "execs_done|edges_found|stability" out/default/fuzzer_stats
+
+- id: s20
+  title: "libFuzzer: команда и флаги"
+  layout: table
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      ./fuzz_load_env_lf corpus/ -max_len=4096 -runs=200000 -print_final_stats
+  - id: a1
+    type: table
+    columns: ["Флаг", "По умолчанию", "Что делает"]
+    rows:
+    - ["-max_len=N", "0", "максимальная длина выхода"]
+    - ["-runs=N", "-1", "число прогонов, затем стоп"]
+    - ["-print_final_stats", "0", "итоговая строка DONE"]
+    - ["-help=1", "0", "справка (-help без =1 не валиден)"]
+    - ["-seed=N", "0", "сид: воспроизводимость"]
+    - ["-timeout=N", "1200", "секунд на один вход"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: command and 6-row table
+      change: blocks wave in
+    settled: |
+      full slide: title, command, table
+  notes: |
+    Флаги libFuzzer отличаются от ключей AFL++ и atheris. Не путать флаги между инструментами.
+
+- id: s21
+  title: "libFuzzer: вывод"
+  layout: table
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      DONE cov: 47 ft: 164 corp: 77/2080b lim: 1788 exec/s: 0 rss: 338Mb
+  - id: a1
+    type: table
+    columns: ["Метка", "Смысл"]
+    rows:
+    - ["cov", "покрытые блоки и пути"]
+    - ["ft", "новые точки (features)"]
+    - ["corp", "размер корпуса (файлы/байты)"]
+    - ["lim", "лимит длины, растёт автоматически"]
+    - ["exec/s", "скорость (0 в конце прогона)"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: DONE line and table
+      change: blocks wave in
+    settled: |
+      full slide: title, DONE line, table
+  notes: |
+    После остановки libFuzzer печатает рекомендуемую цепочку токенов, которые чаще
+    всего встречались на новых путях. Это аналог автоматически генерируемого
+    словаря у AFL.
+
+- id: s22
+  title: "Три фаззера: сравнение"
+  layout: table
+  blocks:
+  - id: a0
+    type: table
+    columns: ["", "AFL", "libFuzzer", "Atheris"]
+    rows:
+    - ["Сборка", "afl-clang-fast", "clang -fsanitize=fuzzer", "байткод при импорте"]
+    - ["Запуск", "afl-fuzz -i corpus -o out", "./bin corpus/ -max_len", "python fuzzer.py corpus/"]
+    - ["Persistent mode", "__AFL_LOOP", "встроен", "Setup + Fuzz"]
+    - ["Покрытие", "edges / bitmap_cvg", "cov / ft / lim", "cov / ft + coverage.py"]
+    - ["Артефакты", "fuzzer_stats / queue/", "stdout + dictionary", "stdout + dictionary"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full table: 5 rows
+      change: table appears
+    settled: |
+      full slide: title and table
+  notes: |
+    Одна обёртка поднимает два фаззера. Запускайте оба, потому что они находят разные вещи.
+
+- id: s23
+  title: "Покрытие: что измерять и AFL"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Покрытие является долей исполненных элементов кода: строк, регионов, функций и
+      веток. Для фаззера это и есть цель, которую измеряют после прогона.
+  - id: a1
+    type: bullet
+    text: |
+      AFL: edges_found : 55 / total_edges : 331 / bitmap_cvg : 16.62%
+      afl-whatsup: мониторинг активных запусков
+      afl-cmin: минимизация корпуса по новым путям
+      afl-plot: график (требует gnuplot)
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: text and 4 bullets
+      change: blocks wave in
+    settled: |
+      full slide: title and both blocks
+  notes: |
+    Покрытие AFL измеряет пути выполнения, а не строки.
+
+- id: s24
+  title: "Покрытие: libFuzzer + llvm-cov"
+  layout: full
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      clang -fprofile-instr-generate -fcoverage-mapping -fsanitize=fuzzer,address -g -O1 -DHAVE_CONFIG_H \
+          -I/opt/fuzzenv/src/cronie-1.5.7/src -I/opt/fuzzenv/src/cronie-1.5.7 \
+          fuzz_load_env.c /opt/fuzzenv/src/cronie-1.5.7/src/env.c \
+          /opt/fuzzenv/src/cronie-1.5.7/src/misc.c \
+          /opt/fuzzenv/src/cronie-1.5.7/src/pw_dup.c -o cov_lf
+      ./cov_lf cov_corpus -runs=3000
+      llvm-profdata merge -sparse default.profraw -o default.profdata
+      llvm-cov report ./cov_lf -instr-profile=default.profdata
+  - id: a1
+    type: text
+    text: |
+      Быстрый путь: ./fuzz_load_env_lf corpus/ -max_len=4096 -runs=100000 -print_final_stats.
+      Измеренные результаты (3k runs): TOTAL 465 regions 19.78%, 582 lines 20.10%,
+      322 branches 20.81%; env.c 40.19% строк; обёртка 93.33%. Обёртка покрыта
+      хорошо, целевая логика покрыта слабо, и это сигнал продолжать фаззинг.
+  anim:
+    duration: 4
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: code chain and result
+      change: blocks wave in
+    settled: |
+      full slide: title, code, result
+  notes: |
+    Корпус растёт, пока покрытие растёт; это и есть сигнал продолжать фаззинг.
+
+- id: s25
+  title: "Покрытие: Atheris + coverage.py"
+  layout: full
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      /opt/atheris/bin/python -m coverage run /opt/atheris/refs/watcher/fuzz_watcher_utils.py \
+          -atheris_runs=200 -max_len=512 -timeout=5 -detect_leaks=0 corpus
+      /opt/atheris/bin/python -m coverage report
+      /opt/atheris/bin/python -m coverage html
+      /opt/atheris/bin/python -m coverage xml
+  - id: a1
+    type: text
+    text: |
+      Отчёт появляется только при штатном завершении fuzzer'а, через
+      -atheris_runs=N, а не через -runs=N. После -runs coverage печатает
+      «No data to report». Пример (200 прогонов): TOTAL 424 stmts, 60 miss, 86%;
+      utils.py 69%, fuzz_watcher_utils.py 85%.
+  - id: a2
+    type: text
+    text: |
+      coverage.py замедляет фаззер почти в 2.4 раза (14.3 с против 6.1 с на
+      500 прогонов), поэтому применяется для визуализации, а не для длительных прогонов.
+  anim:
+    duration: 4
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: code chain and texts
+      change: blocks wave in
+    settled: |
+      full slide: title, code, notes
+  notes: |
+    Внутренняя метрика fuzzer'а (cov из DONE) является битмапом; coverage.py измеряет строки.
+
+- id: sec-python
+  title: "Atheris, Jazzer и практика"
+  layout: section
+  caption: "Python · Jazzer · Go · задание и контрольные вопросы"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: dim section title
+      change: title fades in
+    - id: b1
+      pose: |
+        full section title and caption
+      change: caption appears
+    settled: |
+      centered title and caption
+  notes: |
+    Atheris является Python-фаззингом; практика по нему не даётся.
+
+- id: s26
+  title: "Atheris: что это"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: text
+    text: |
+      Atheris является обёрткой libFuzzer для Python. Входом являются сырые байты
+      плюс FuzzedDataProvider; главной функцией служит atheris.Setup() с atheris.Fuzz().
+      Фаззер фиксирует сбой как неперехваченное исключение.
+  - id: a1
+    type: bullet
+    text: |
+      Инструментация: байткод при импорте, без компиляции
+      Покрытие строк: coverage.py (см. §8.4)
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: text and bullets
+      change: blocks wave in
+    settled: |
+      full slide: title and both blocks
+  notes: |
+    Python-обёртки используют тот же lizard для выбора цели.
+
+- id: s27
+  title: "Atheris: структура и FuzzedDataProvider"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      import sys
+      import atheris
+
+      with atheris.instrument_imports():
+          from my_target_module import target_function
+
+      def TestOneInput(data):
+          fdp = atheris.FuzzedDataProvider(data)
+          mode = fdp.ConsumeIntInRange(0, 5)
+          ...
+
+      atheris.Setup(sys.argv, TestOneInput)
+      atheris.Fuzz()
+  - id: a1
+    type: table
+    columns: ["Метод", "Что возвращает"]
+    rows:
+    - ["ConsumeBytes(n)", "bytes"]
+    - ["ConsumeString(n)", "str (surrogates)"]
+    - ["ConsumeUnicode(n)", "str (surrogates)"]
+    - ["ConsumeUnicodeNoSurrogates", "str, без surrogates"]
+    - ["ConsumeIntInRange", "int в диапазоне"]
+    - ["ConsumeFloat()", "float"]
+    - ["PickValueInList", "случайный элемент списка"]
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: code and table
+      change: blocks wave in
+    settled: |
+      full slide: title, code, table
+  notes: |
+    Порядок вызовов Consume* фиксирован от итерации к итерации, иначе покрытие невоспроизводимо.
+
+- id: s28
+  title: "Atheris: демо watcher и замечания"
+  layout: content-left
+  blocks:
+  - id: a0
+    type: formula
+    text: |
+      /opt/atheris/bin/python /opt/atheris/refs/watcher/fuzz_watcher_utils.py -max_len=512 -timeout=5 -detect_leaks=0 -runs=10000 /tmp/wcorpus
+  - id: a1
+    type: text
+    text: |
+      Обёртка для watcher/utils.* (cron-parser). Проверено, 10k runs:
+      #10000  DONE   cov: 262 ft: 756 corp: 29/210b lim: 34
+  - id: a2
+    type: bullet
+    text: |
+      Не все обёртки workspace поднимутся
+      instrument_imports() до импорта цели
+      Не импортируйте цель внутри TestOneInput
+      Ловите только документированные ошибки
+      Избегайте недетерминизма
+  anim:
+    duration: 2
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full slide: command, DONE and bullets
+      change: blocks wave in
+    settled: |
+      full slide: title, command, DONE, bullets
+  notes: |
+    Импорт watcher работает из любого cwd (editable install).
+
+- id: s29
+  title: "Jazzer и Go"
+  layout: cards
+  blocks:
+  - id: a0
+    type: card
+    title: "Jazzer (JVM)"
+    body: "Coverage-guided для JVM, построен на libFuzzer. fuzzerTestOneInput(), сборка JAR, запуск java -cp <classpath>;jazzer.jar com.code_intelligence.jazzer.Jazzer --target_class=<fuzz-class> [corpus_dir]. Артефакты: crash-<sha1> и Crash-<sha1>.java"
+  - id: a1
+    type: card
+    title: "Go"
+    body: "Встроен в stdlib (пакет testing) с Go 1.18. func FuzzXxx(f *testing.F): f.Add добавляет сиды, f.Fuzz фаззит. Запуск: go test ./pkg -run '^$' -fuzz FuzzXxx -fuzztime 30s"
+  anim:
+    duration: 3
+    beats:
+    - id: b0
+      pose: |
+        cold base: title visible
+      change: title rises in
+    - id: b1
+      pose: |
+        full grid: 2 cards
+      change: cards appear one by one
+    settled: |
+      full slide: title and 2 cards
+  notes: |
+    Jazzer работает для JVM; Go является встроенным фаззингом в stdlib.
+
+- id: s30
+  title: "Полный цикл"
+  layout: diagram
+  figure:
+    kind: diagram
+    prompt: |
+      Horizontal 6-step roadmap of the full fuzzing cycle, left to right, with directional arrows:
+      (1) «lizard, выбор функции по CCN», (2) «обёртка, fuzz_<функция>.c», (3) «сборка, afl-clang-fast и clang -fsanitize=fuzzer,address», (4) «корпус, 3 сида плюс 1–2 дополнительных», (5) «прогон, AFL и libFuzzer», (6) «покрытие, edges, cov, llvm-cov, coverage.py».
+      Style: dark violet background (#1a0f2e), orange (#ff6b35) and rose (#ff2e88) accents, clean engineering diagram; each box numbered 1 to 6 with its one-line detail; last box accented; legible labels; no external content.
+    caption: "Полный цикл: от выбора цели до покрытия"
+  anim:
+    duration: 7
+    beats:
+    - id: b0
+      pose: |
+        cold base: six boxes dim, arrows faint
+      change: roadmap rises in
+    - id: b1
+      pose: |
+        steps 1 through 3 lit, arrows drawn
+      change: first chain lights up
+      accent: steps 1 through 3
+    - id: b2
+      pose: |
+        steps 4 through 6 lit, arrows drawn
+      change: second chain lights up
+      accent: steps 4 through 6
+    settled: |
+      full roadmap lit, all six steps, both chains, caption «Полный цикл»
+  notes: |
+    От выбора цели до покрытия: один проход по всем инструментам курса.
