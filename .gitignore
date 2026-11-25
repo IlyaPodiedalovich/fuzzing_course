@@ -1,0 +1,14 @@
+# Импортированный архив с исходным workspace и его извлечение (~700 МБ)
+fuzz-builder.tar
+fuzz-builder/
+
+# Артефакты harness/сессии
+.unipi/
+.scratch/
+
+# Кэш Python и артефакты сборки
+__pycache__/
+*.py[cod]
+
+# Зависимости npm/Node
+node_modules/

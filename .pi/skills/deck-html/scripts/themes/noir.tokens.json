@@ -1,0 +1,22 @@
+{
+  "stage_bg": "#000000",
+  "slide_bg": "#0F0F0F",
+  "title": "#D4D4D4",
+  "body": "#D4D4D4",
+  "accent": "#E8C547",
+  "accent_glow": "rgba(232,197,71,.25)",
+  "figfill": "#1E1E1E",
+  "figline": "#4A4A4A",
+  "figtext": "#8A8A8A",
+  "rowalt": "#1A1A1A",
+  "headertext": "#141414",
+  "font_family": "Montserrat",
+  "font_stack": "'Montserrat','Liberation Sans','DejaVu Sans',sans-serif",
+  "pad": 72,
+  "fonts": [
+    {"file": "montserrat-latin-400-normal.woff2", "weight": 400},
+    {"file": "montserrat-cyrillic-400-normal.woff2", "weight": 400},
+    {"file": "montserrat-latin-700-normal.woff2", "weight": 700},
+    {"file": "montserrat-cyrillic-700-normal.woff2", "weight": 700}
+  ]
+}

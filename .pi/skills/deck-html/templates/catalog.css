@@ -1,0 +1,193 @@
+/* deck-html layout catalog — template CSS (ticket 09)
+   One section per template, keyed by the section class .tpl-<name>.
+   Instantiation: fill the slots in templates/<name>.slide.html and append
+   the template's CSS section (and the common section, once) to the theme CSS.
+   Theme tokens required: --pad --title --body --accent --accent-glow
+   --figfill --figline --figtext --rowalt --headertext --font
+   Optional (fallback to --accent): --gold
+   The whitespace contract (layout-constants.md) is baked in: every flowing
+   multi-line class is pre-line; code is pre with newlines inside .ln spans. */
+
+/* ============ common (include once per deck) ============ */
+/* content zone per the stage contract (layout-constants.md): top 165 (below
+   the title band), bottom 72 — 165..1008, height 843 */
+/* .inner carries the 72px padding of the reference model (gen_deck
+   CONTENT_CSS L76): the in-flow s-title starts at (72,72) in the 0..165
+   band. The zones are position:absolute — their offsets resolve against the
+   padding box, so the padding does not shift them. */
+.tpl .inner{position:absolute;inset:0;padding:var(--pad)}
+/* the zone CENTERS its content vertically by default (user rule 2026-10-21:
+   empty space in the zone means centered content, not content-top). Flex-
+column templates center their column (justify-content); grid templates (duo,
+   cards, grid5) keep their display:grid override and center their ROWS with
+   align-content (the rows' axis is the block axis — justify-content does not
+   reach them); per-column content still starts at the row top via
+   align-items:start. Top-aligning is an exception a template declares (with
+   justify-content:flex-start / align-content:start). */
+.tpl .z{position:absolute;left:var(--pad);right:var(--pad);top:165px;bottom:72px;
+  display:flex;flex-direction:column;justify-content:center;align-content:center}
+.tpl .s-title{margin:0 0 36px;font-size:48px;font-weight:700;color:var(--title);
+  line-height:1.15;letter-spacing:-.5px}
+.tpl .b,.tpl .para,.tpl .tail,.tpl .fcap,.tpl .cbody,.tpl .lb,
+.tpl .ch-row .v,.tpl .strip,.tpl .sigbox,.tpl .ch-head{white-space:pre-line}
+.tpl .b{position:relative;padding-left:44px;font-size:25px;line-height:1.55}
+.tpl .b::before{content:"";position:absolute;left:4px;top:.55em;width:12px;height:12px;
+  background:var(--figline);border-radius:2px}
+/* sub-item (skeleton bullet line indented two spaces): indent + smaller marker;
+   the class is free to author, the contract is the indent (layout-constants) */
+.tpl .b.sub{padding-left:76px}
+.tpl .b.sub::before{left:36px;width:8px;height:8px}
+.tpl .ln{display:block;min-height:1.2em}
+.tpl .tbl{border-collapse:collapse;width:100%;font-size:22px;line-height:1.4}
+.tpl .tbl th{background:var(--figline);color:var(--headertext);font-weight:700;
+  padding:16px 26px;text-align:left;letter-spacing:.5px;border-radius:4px}
+.tpl .tbl td{padding:15px 26px;border-bottom:1px solid rgba(128,128,128,.35)}
+.tpl .tbl tr:nth-child(even) td{background:var(--rowalt)}
+.tpl .code{background:var(--figfill);border:1.5px solid var(--figline);border-radius:8px;
+  padding:28px 36px;font-size:23px;line-height:1.6;white-space:pre;color:var(--figtext)}
+.tpl .strip{border:1.5px solid var(--accent);background:rgba(128,128,128,.08);border-radius:8px;
+  padding:18px 28px;font-size:25px;line-height:1.45;color:var(--title)}
+.tpl .strip .pr{color:var(--accent);font-weight:700;margin-right:14px}
+.tpl .chip{background:var(--figfill);border:1.5px solid var(--figline);border-radius:8px;overflow:hidden}
+.tpl .chip .ch-head{background:var(--figline);color:var(--headertext);font-weight:700;font-size:26px;
+  padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.tpl .chip .ch-row{padding:15px 24px;border-top:1px solid rgba(128,128,128,.3)}
+.tpl .chip .ch-row .k{font-size:16px;letter-spacing:2px;color:var(--accent);display:block;margin-bottom:5px;font-weight:700}
+.tpl .chip .ch-row .v{font-size:25px;line-height:1.45}
+.tpl .badge{font-size:16px;letter-spacing:2px;border:1.5px solid var(--headertext);color:var(--headertext);
+  padding:3px 12px;border-radius:4px;font-weight:700}
+.tpl .fig-zone{background:var(--figfill);border:2px solid var(--figline);border-radius:16px;
+  display:flex;align-items:center;justify-content:center}
+.tpl .fig-zone svg{width:100%;height:100%;display:block}
+.tpl .fig-ph{font-size:22px;color:var(--figtext)}
+
+/* ============ tpl-title — cover / section divider (legacy "section") ============ */
+/* provenance: generator layout-section (gen_deck CONTENT_CSS) */
+.tpl-title .z{top:0;bottom:0;display:flex;flex-direction:column;justify-content:center}
+.tpl-title .t-kicker{font-size:26px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--accent)}
+.tpl-title h1{font-size:92px;line-height:1.08;margin:36px 0 0;color:var(--title);max-width:1560px}
+.tpl-title .t-sub{font-size:34px;line-height:1.5;margin-top:36px;max-width:1280px}
+.tpl-title .t-rule{width:180px;height:6px;background:var(--accent);margin-top:48px}
+
+/* ============ tpl-duo-l — text column left, figure right (legacy content-left) ============ */
+/* provenance: generator layout-content-left (gen_deck CONTENT_CSS) */
+/* 72 pad + 1032 + 24 gutter + 720 + 72 pad = 1920 exactly (stage contract) */
+.tpl-duo-l .z{display:grid;grid-template-columns:1032px 720px;gap:24px;align-items:start}
+.tpl-duo-l .col{display:flex;flex-direction:column;gap:24px}
+.tpl-duo-l .fig-zone{height:843px;padding:28px}
+
+/* ============ tpl-duo-r — text column right, figure left (legacy content-right) ============ */
+/* provenance: generator layout-content-right (gen_deck CONTENT_CSS) */
+/* 72 pad + 720 + 24 gutter + 1032 + 72 pad = 1920 exactly (stage contract) */
+.tpl-duo-r .z{display:grid;grid-template-columns:720px 1032px;gap:24px;align-items:start}
+.tpl-duo-r .col{display:flex;flex-direction:column;gap:24px}
+.tpl-duo-r .fig-zone{height:843px;padding:28px}
+
+/* ============ tpl-full — full-width content (legacy "full") ============ */
+/* provenance: generator layout-full (gen_deck CONTENT_CSS) */
+.tpl-full .z{display:flex;flex-direction:column;gap:24px}
+.tpl-full .para{font-size:25px;line-height:1.55}
+.tpl-full .formula{font-size:30px;font-weight:700;color:var(--title);margin:0;padding:18px 22px;
+  background:var(--figfill);border-left:4px solid var(--accent);border-radius:8px;white-space:pre-wrap}
+
+/* ============ tpl-table — table slide (legacy "table") ============ */
+/* provenance: generator layout-table (gen_deck CONTENT_CSS) */
+.tpl-table .z{display:flex;flex-direction:column;gap:24px}
+
+/* ============ tpl-cards — 2x2 card grid (legacy "cards") ============ */
+/* provenance: generator layout-cards (gen_deck CONTENT_CSS) */
+.tpl-cards .z{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.tpl-cards .card{background:var(--figfill);border:1px solid var(--figline);border-radius:12px;padding:22px}
+.tpl-cards .card .c-title{font-size:28px;font-weight:700;color:var(--title);margin-bottom:10px}
+.tpl-cards .card .c-body{font-size:25px;line-height:1.4;white-space:pre-line}
+
+/* ============ tpl-grid5 — five-column enumeration (legacy "grid-5") ============ */
+/* provenance: generator layout-grid-5 (gen_deck CONTENT_CSS) */
+.tpl-grid5 .z{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.tpl-grid5 .card{background:var(--figfill);border:1px solid var(--figline);border-radius:12px;padding:20px}
+.tpl-grid5 .card .c-title{font-size:24px;font-weight:700;color:var(--title);margin-bottom:10px}
+.tpl-grid5 .card .c-body{font-size:25px;line-height:1.4;white-space:pre-line}
+
+/* ============ tpl-figure — the figure IS the slide (legacy "diagram") ============ */
+/* provenance: generator layout-diagram (gen_deck CONTENT_CSS) — the legacy
+   figure zone stops 140px above the bottom for the caption line; here the
+   caption is the last flex item of the zone, so the zone keeps the common
+   72px bottom margin (the caption must not touch the slide edge) */
+.tpl-figure .z{top:165px;bottom:72px;display:flex;flex-direction:column;gap:16px}
+.tpl-figure .fig-zone{flex:1;min-height:0;padding:24px}
+.tpl-figure .fcap{font-size:20px;color:var(--figtext)}
+
+/* ============ tpl-code — code window + bullets + strip (real-report l-cs) ============ */
+/* provenance: real-report slide 10 (13-s10.html), PCB theme */
+.tpl-code .z{display:flex;flex-direction:column;gap:32px}
+.tpl-code .bulletcol{display:flex;flex-direction:column;gap:22px}
+.tpl-code .b{font-size:25px}
+
+/* ============ tpl-signature — centered intro + signature + two cards (real-report l-sig) ============ */
+/* provenance: real-report slide 8 (10-s8.html), PCB theme */
+.tpl-signature .z{display:flex;flex-direction:column;justify-content:center;gap:36px;align-items:center}
+.tpl-signature .para{text-align:center;width:1480px;font-size:25px;line-height:1.55}
+.tpl-signature .sigduo{display:grid;grid-template-columns:1fr 1fr;gap:48px;width:1776px}
+.tpl-signature .scard{background:var(--figfill);border:1.5px solid var(--figline);border-radius:8px;
+  padding:28px 32px 24px;position:relative}
+.tpl-signature .scard::before{content:"";position:absolute;top:-7px;left:32px;width:10px;height:10px;
+  background:var(--gold,var(--accent));border-radius:50%}
+.tpl-signature .scard .b{font-size:25px}
+.tpl-signature .scard .b + .b{margin-top:14px}
+.tpl-signature .sigbox{margin:0 auto;background:var(--figfill);border:1.5px solid var(--figline);
+  border-radius:8px;padding:22px 44px;font-size:30px;color:var(--accent);font-weight:700;
+  box-shadow:0 0 30px var(--accent-glow)}
+
+/* ============ tpl-pipeline — numbered node chain with arrows (real-report l-pipe) ============ */
+/* provenance: real-report slide 12 (15-s12.html), PCB theme */
+.tpl-pipeline .z{display:flex;flex-direction:row;align-items:center;justify-content:center;gap:0}
+.tpl-pipeline .pnode{width:400px;flex:none}
+.tpl-pipeline .pnode .ch-head{font-size:24px;padding:13px 20px}
+.tpl-pipeline .pnode .cbody{font-size:25px;line-height:1.45;padding:18px 20px}
+.tpl-pipeline .parr{width:40px;flex:none;height:2px;background:var(--figline);margin-top:24px;
+  position:relative;opacity:.8}
+.tpl-pipeline .parr::after{content:"";position:absolute;right:-2px;top:-6px;
+  border:7px solid transparent;border-left:9px solid var(--figline)}
+
+/* ============ tpl-verdict — stacked escalation + tail (real-report l-esc) ============ */
+/* provenance: real-report slide 16 (19-s16.html), PCB theme */
+.tpl-verdict .z{display:flex;flex-direction:column;justify-content:center;gap:40px}
+.tpl-verdict .layer{display:flex;align-items:center;gap:52px}
+.tpl-verdict .layer .lt{width:360px;flex:none;text-align:right;font-size:30px;font-weight:700;color:var(--title)}
+.tpl-verdict .layer .lb{width:1320px;font-size:25px;line-height:1.5}
+.tpl-verdict .layer.hot .lt{width:auto;font-size:54px;color:var(--gold,var(--accent));
+  border:2.5px solid var(--gold,var(--accent));border-radius:8px;padding:12px 30px;
+  text-align:center;box-shadow:0 0 26px var(--accent-glow)}
+.tpl-verdict .tail{font-size:25px;line-height:1.55;width:1560px}
+
+/* ============ tpl-chipduo — two structured chips with k/v rows (real-report l-duo) ============ */
+/* provenance: real-report slide 4 (05-s4.html), PCB theme */
+.tpl-chipduo .z{display:flex;flex-direction:column;justify-content:center;gap:48px}
+.tpl-chipduo .critline{font-size:20px;letter-spacing:3px;color:var(--accent);font-weight:700}
+.tpl-chipduo .duo{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+
+/* ============ tpl-quote — centered pull quote (bold-template-pack, MIT) ============ */
+/* provenance: frontend-slides bold-template-pack quote slide (quote-mark +
+   quote-text pair), evals/prototypes/html-bases/vendor/frontend-slides
+   (Zara Zhang 2025, MIT) — design.md density rule: one display moment + a
+   short caption, nothing else. Adapted to the stage contract (1920x1080,
+   zone 165..1008). */
+.tpl-quote .z{display:flex;flex-direction:column;justify-content:center;gap:44px}
+.tpl-quote .q-mark{font-size:132px;line-height:.5;color:var(--accent);font-weight:700}
+.tpl-quote .q-text{font-size:64px;font-weight:700;line-height:1.25;color:var(--title);
+  max-width:1560px;white-space:pre-line}
+.tpl-quote .q-src{font-size:24px;letter-spacing:3px;color:var(--accent);font-weight:700}
+
+/* ============ tpl-stat — big number + caption (bold-template-pack, MIT) ============ */
+/* provenance: frontend-slides bold-template-pack "massive display moment" stat
+   slide, same MIT source as tpl-quote. The number is the display moment;
+   caption 1-2 lines; optional strip for the takeaway. */
+.tpl-stat .z{display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:40px;text-align:center}
+.tpl-stat .st-num{font-size:220px;font-weight:700;line-height:1;color:var(--accent)}
+.tpl-stat .st-cap{font-size:34px;line-height:1.45;color:var(--title);max-width:1440px;
+  white-space:pre-line}
+.tpl-stat .st-strip{border:1.5px solid var(--accent);background:rgba(128,128,128,.08);
+  border-radius:8px;padding:18px 28px;font-size:25px;line-height:1.45;color:var(--title);
+  max-width:1440px;white-space:pre-line}

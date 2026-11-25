@@ -1,0 +1,3 @@
+/* noir effects (factura): the design is deliberately clean — no moving decor.
+ * A theme package may carry zero effects; this file documents the decision.
+ * Any effect added later MUST freeze in @media print (see design-tokens.md). */

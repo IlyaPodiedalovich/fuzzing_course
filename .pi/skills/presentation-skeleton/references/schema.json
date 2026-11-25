@@ -1,0 +1,345 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "presentation-skeleton/v1.1",
+  "title": "Presentation skeleton (v1.1)",
+  "type": "object",
+  "required": [
+    "skeleton_version",
+    "meta",
+    "slides"
+  ],
+  "properties": {
+    "skeleton_version": {
+      "const": 1
+    },
+    "meta": {
+      "type": "object",
+      "required": [
+        "title",
+        "lang",
+        "target",
+        "tone",
+        "anim_role"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "type": "string",
+          "description": "Optional; only when the user named the audience."
+        },
+        "lang": {
+          "type": "string",
+          "default": "ru"
+        },
+        "target": {
+          "type": "string",
+          "enum": [
+            "pptx",
+            "html"
+          ],
+          "description": "Render target the skeleton is tuned for first; either deck skill can consume it (the PPTX pass ignores anim)."
+        },
+        "canvas": {
+          "type": "string",
+          "default": "16:9"
+        },
+        "design_ref": {
+          "type": "string",
+          "default": "design.md"
+        },
+        "tone": {
+          "type": "string",
+          "default": "academic",
+          "description": "Narrative tone chosen with the user: academic / business / playful / creative / ..."
+        },
+        "anim_role": {
+          "type": "string",
+          "enum": [
+            "factual",
+            "entertaining",
+            "mixed"
+          ],
+          "description": "Informational weight of animations/infographics for the subject. Content truth is required in every role; the role changes the style of motion, not the facts."
+        },
+        "source": {
+          "type": "string",
+          "description": "Path of the source text."
+        }
+      }
+    },
+    "slides": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "layout"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^s[1-9][0-9]*$|^sec-[a-z0-9][a-z0-9-]*$|^t$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "layout": {
+            "type": "string",
+            "enum": [
+              "content-left",
+              "content-right",
+              "full",
+              "table",
+              "grid-5",
+              "diagram",
+              "section",
+              "cards"
+            ]
+          },
+          "blocks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "type"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9]*$"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "bullet",
+                    "text",
+                    "formula",
+                    "card",
+                    "table"
+                  ]
+                },
+                "text": {
+                  "type": "string"
+                },
+                "caption": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 2
+                },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "allOf": [
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "enum": [
+                          "bullet",
+                          "text",
+                          "formula"
+                        ]
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "text"
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "card"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "title",
+                      "body"
+                    ]
+                  }
+                },
+                {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "table"
+                      }
+                    }
+                  },
+                  "then": {
+                    "required": [
+                      "columns",
+                      "rows"
+                    ]
+                  }
+                }
+              ]
+            }
+          },
+          "figure": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "kind",
+                  "prompt"
+                ],
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "diagram",
+                      "chart",
+                      "circuit",
+                      "image"
+                    ]
+                  },
+                  "prompt": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "Full spec of the figure: elements, connections, labels, values, states. The renderer builds from this text."
+                  },
+                  "caption": {
+                    "type": "string"
+                  },
+                  "svg": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          },
+          "anim": {
+            "description": "HTML-only animation description (beat table). Ignored by the PPTX target.",
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "duration",
+                  "beats",
+                  "settled"
+                ],
+                "properties": {
+                  "duration": {
+                    "type": "number",
+                    "minimum": 1,
+                    "default": 6,
+                    "description": "Slide length in seconds."
+                  },
+                  "beats": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                      "type": "object",
+                      "required": [
+                        "id",
+                        "pose"
+                      ],
+                      "properties": {
+                        "id": {
+                          "type": "string",
+                          "pattern": "^b[0-9]+$"
+                        },
+                        "pose": {
+                          "type": "string",
+                          "minLength": 1,
+                          "description": "The complete picture AFTER this beat (a state, not a process)."
+                        },
+                        "change": {
+                          "type": "string",
+                          "description": "Only what changes during the beat; everything else holds."
+                        },
+                        "accent": {
+                          "type": [
+                            "string",
+                            "null"
+                          ],
+                          "description": "What the eye should follow; null if none."
+                        }
+                      }
+                    }
+                  },
+                  "settled": {
+                    "type": "string",
+                    "minLength": 1,
+                    "description": "The final static picture; the one that goes to print. Must carry the full fact."
+                  }
+                }
+              }
+            ]
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Speaker notes: what the speaker says, not the slide text."
+          },
+          "caption": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "layout": {
+                  "enum": [
+                    "content-left",
+                    "content-right",
+                    "full",
+                    "table",
+                    "grid-5",
+                    "cards"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "blocks"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}
